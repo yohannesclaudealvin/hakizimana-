@@ -17,20 +17,18 @@ def main():
     target_languages = {"Français": "fr", "Anglais": "en", "Espagnol": "es", "Portugais": "pt", "Arabe": "ar"}
     target_language = target_languages[st.sidebar.selectbox("Language:", list(target_languages.keys()))]
 
-    # Affichage de la photo de profil
+    # Affichage de la photo de profil dans la barre latérale
     image_url = "https://raw.githubusercontent.com/yohannesclaudealvin/hakizimana-/main/Scripts/IMG_3074.JPG"
-
-    # Charger l'image
-    st.image(image_url, width=150)
+    st.sidebar.image(image_url, width=150)
 
     # Traduire le titre de la page
     st.title(translate_text("Profil de HAKIZIMANA JEAN CLAUDE", target_language))
     st.write(translate_text("🇧🇮 Salut, je suis HAKIZIMANA JEAN CLAUDE.", target_language))
     st.write(translate_text("@YOHANNES", target_language))
     st.write(translate_text("Ingénieur en Télécommunications et en Hydrologie, spécialiste en apprentissage automatique du Burundi 🇧🇮", target_language))
-    
-    # Ajoutez le reste de votre contenu ici
-    st.write(translate_text("⚒️ Mes intérêts sont la Science des données 🔬, MLOps 🧠⚙️, la Technologie Cloud ☁️ Analyste IT-Climate , Hydrologue , Météorologue , Data Scientist , Administrateur de base de données et système et ainsi l'Enseignement 👨🏽‍🏫.", target_language))
+
+    # Contenu détaillé
+    st.write(translate_text("⚒️ Mes intérêts sont la Science des données 🔬, MLOps 🧠⚙️, la Technologie Cloud ☁️, Analyste IT-Climate, Hydrologue, Météorologue, Data Scientist, Administrateur de base de données et système, et ainsi l'Enseignement 👨🏽‍🏫.", target_language))
     st.write(translate_text("Je suis également compétent en Hydrologie, Climatologie et Prévision météorologique.", target_language))
     st.write(translate_text("En hydrologie, je suis familier avec des modèles tels que le modèle de pluie-débit, le modèle de Muskingum, et le modèle de distribution de probabilité de précipitations.", target_language))
     st.write(translate_text("En climatologie, j'ai de l'expérience avec l'analyse de séries chronologiques climatiques, la modélisation climatique régionale et l'utilisation de modèles tels que le modèle ARIMA.", target_language))
@@ -42,7 +40,7 @@ def main():
     st.write(translate_text("🤝 Vous voulez me contacter ? Voici mes adresses e-mail : [ici](mailto:alvinhakizimana@gmail.com) et [ici](mailto:alvinjeanclaude@yahoo.co.uk).", target_language))
     st.write(translate_text("Vous pouvez aussi me retrouver sur LinkedIn : [ici](https://www.linkedin.com/in/hakizimana-jean-claude-714195163/)", target_language))
     st.write(translate_text("Et sur GitHub : [ici](https://github.com/yohannesclaudealvin)", target_language))
-    
+
     st.title(translate_text("Résumé Professionnel", target_language))
 
     # Informations générales
@@ -76,8 +74,8 @@ def main():
     st.header(translate_text("EXPÉRIENCE PROFESSIONNELLE", target_language))
     st.write(translate_text("""
      Prévisionniste - Institut Géographique du Burundi (IGEBU), Mars 2024, Département d'Hydrométéorologie et Agro climatologie
-     Stage - Agence pour la Sécurité de la Navigation Aérienne en Afrique et à Madagascar –ASECNA - Août 2023 – Nov 2023
-     Stage - Régie de Production et de Distribution d'eau et d'électricité –REGIDESO - Août 2022
+     Stage - Agence pour la Sécurité de la Navigation Aérienne en Afrique et à Madagascar – ASECNA - Août 2023 – Nov 2023
+     Stage - Régie de Production et de Distribution d'eau et d'électricité – REGIDESO - Août 2022
      Stage - Institut Géographique du Burundi (IGEBU), Sept 2022, Département d'Hydrométéorologie et Agroclimatologie
      Technicien supérieur - CFCIB (Chambre Fédérale de Commerce et d'Industrie du Burundi), Juillet 2018 – Nov 2021
     """, target_language))
@@ -106,12 +104,13 @@ def main():
     # Contact
     st.header(translate_text("CONTACT", target_language))
     st.write(translate_text("Courriel : alvinhakizimana@gmail.com / alvinjeanclaude@yahoo.co.uk", target_language))
+    st.write(translate_text("Téléphone : +257-79735017-61338212", target_language))
 
-    # Ajouter un sous-titre dans la barre latérale pour télécharger le PDF
-    st.sidebar.header("Télécharger le CV")
+    # Téléchargement du CV
+    st.sidebar.header(translate_text("Télécharger le CV", target_language))
 
     # Ajouter un bouton pour télécharger le CV
-    if st.sidebar.button("Télécharger en PDF"):
+    if st.sidebar.button(translate_text("Télécharger en PDF", target_language)):
         # Générer le PDF à partir du contenu
         pdf_content = st.markdown(f"""
             # Profil de HAKIZIMANA JEAN CLAUDE
@@ -143,7 +142,7 @@ def main():
         """)
 
         pdf_file = pdfkit.from_string(pdf_content, False)
-        st.download_button("Télécharger CV PDF", pdf_file, "cv.pdf")
+        st.download_button(translate_text("Télécharger CV PDF", target_language), pdf_file, "cv.pdf")
 
 if __name__ == "__main__":
     main()
