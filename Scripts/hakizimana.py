@@ -18,7 +18,7 @@ def main():
     target_language = target_languages[st.sidebar.selectbox("Language:", list(target_languages.keys()))]
 
     # Affichage de la photo de profil
-    st.image("/mount/src/hakizimana-/Scripts/hakizimana-/Scripts/IMG_3074.JPG", width=150)  # Remplacez par le chemin de votre image
+    #st.image("/mount/src/hakizimana-/Scripts/hakizimana-/Scripts/IMG_3074.JPG", width=150)  # Remplacez par le chemin de votre image
 
     # Traduire le titre de la page
     st.title(translate_text("Profil de HAKIZIMANA JEAN CLAUDE", target_language))
