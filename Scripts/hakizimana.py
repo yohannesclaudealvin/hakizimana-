@@ -19,6 +19,11 @@ def main():
 
     # Affichage de la photo de profil
     #st.image("/mount/src/hakizimana-/Scripts/hakizimana-/Scripts/IMG_3074.JPG", width=150)  # Remplacez par le chemin de votre image
+    # URL brute de l'image
+image_url = "https://raw.githubusercontent.com/yohannesclaudealvin/hakizimana-/main/Scripts/IMG_3074.JPG"
+
+# Charger l'image
+st.image(image_url, width=150)
 
     # Traduire le titre de la page
     st.title(translate_text("Profil de HAKIZIMANA JEAN CLAUDE", target_language))
@@ -104,8 +109,17 @@ def main():
     st.header(translate_text("CONTACT", target_language))
     st.write(translate_text("Courriel : alvinhakizimana@gmail.com / alvinjeanclaude@yahoo.co.uk",target_language))
 
-    st.sidebar.subheader(translate_text("Photo de Profil", target_language))
-    st.sidebar.image("IMG_3074.JPG",caption=translate_text ("Photo de profil", target_language))
+    # Définir la langue cible et la fonction de traduction (si nécessaire)
+target_language = "fr"  # Exemple de langue cible
+
+# Ajouter un sous-titre dans la barre latérale
+st.sidebar.subheader(translate_text("Photo de Profil", target_language))
+
+# Charger l'image dans la barre latérale
+st.sidebar.image(
+    "https://raw.githubusercontent.com/yohannesclaudealvin/hakizimana-/main/Scripts/IMG_3074.JPG",
+    caption=translate_text("Photo de profil", target_language)
+)
 
     st.write(translate_text("🖐️ Restons en contact pour des mises à jour et des liens utiles sur ce que             j'apprends, lis, écris et construis.", target_language))
     email = st.sidebar.text_input(translate_text("Entrez votre adresse e-mail:", target_language))
