@@ -18,12 +18,10 @@ def main():
     target_language = target_languages[st.sidebar.selectbox("Language:", list(target_languages.keys()))]
 
     # Affichage de la photo de profil
-    #st.image("/mount/src/hakizimana-/Scripts/hakizimana-/Scripts/IMG_3074.JPG", width=150)  # Remplacez par le chemin de votre image
-    # URL brute de l'image
-image_url = "https://raw.githubusercontent.com/yohannesclaudealvin/hakizimana-/main/Scripts/IMG_3074.JPG"
+    image_url = "https://raw.githubusercontent.com/yohannesclaudealvin/hakizimana-/main/Scripts/IMG_3074.JPG"
 
-# Charger l'image
-st.image(image_url, width=150)
+    # Charger l'image
+    st.image(image_url, width=150)
 
     # Traduire le titre de la page
     st.title(translate_text("Profil de HAKIZIMANA JEAN CLAUDE", target_language))
@@ -107,37 +105,45 @@ st.image(image_url, width=150)
 
     # Contact
     st.header(translate_text("CONTACT", target_language))
-    st.write(translate_text("Courriel : alvinhakizimana@gmail.com / alvinjeanclaude@yahoo.co.uk",target_language))
+    st.write(translate_text("Courriel : alvinhakizimana@gmail.com / alvinjeanclaude@yahoo.co.uk", target_language))
 
-    # Définir la langue cible et la fonction de traduction (si nécessaire)
-target_language = "fr"  # Exemple de langue cible
+    # Ajouter un sous-titre dans la barre latérale pour télécharger le PDF
+    st.sidebar.header("Télécharger le CV")
 
-# Ajouter un sous-titre dans la barre latérale
-st.sidebar.subheader(translate_text("Photo de Profil", target_language))
+    # Ajouter un bouton pour télécharger le CV
+    if st.sidebar.button("Télécharger en PDF"):
+        # Générer le PDF à partir du contenu
+        pdf_content = st.markdown(f"""
+            # Profil de HAKIZIMANA JEAN CLAUDE
+            {translate_text("🇧🇮 Salut, je suis HAKIZIMANA JEAN CLAUDE.", target_language)}
+            {translate_text("Ingénieur en Télécommunications et en Hydrologie, spécialiste en apprentissage automatique du Burundi 🇧🇮", target_language)}
 
-# Charger l'image dans la barre latérale
-st.sidebar.image(
-    "https://raw.githubusercontent.com/yohannesclaudealvin/hakizimana-/main/Scripts/IMG_3074.JPG",
-    caption=translate_text("Photo de profil", target_language)
-)
+            ## Résumé Professionnel
+            {translate_text("Je suis un professionnel polyvalent en télécommunications et en hydrologie, titulaire d'un Ingéniorat en télécommunications et d'une maîtrise en hydrologie.", target_language)}
+            
+            ## Éducation et formation
+            ### ÉDUCATION ET FORMATION
+            {translate_text("M.Sc. Hydrologie quantitative - 2021-Dec 2023", target_language)}
+            {translate_text("B.Tech. Ingénieur Technique en Télécommunications - 2011-2016", target_language)}
+            
+            ### CERTIFICATIONS
+            {translate_text("Machine Learning en météorologie et climat (ECMWF, IFAB) – en ligne - Janvier – Avril 2023", target_language)}
 
-    st.write(translate_text("🖐️ Restons en contact pour des mises à jour et des liens utiles sur ce que             j'apprends, lis, écris et construis.", target_language))
-    email = st.sidebar.text_input(translate_text("Entrez votre adresse e-mail:", target_language))
+            ## EXPÉRIENCE PROFESSIONNELLE
+            {translate_text("Prévisionniste - Institut Géographique du Burundi (IGEBU), Mars 2024", target_language)}
+            
+            ## ENGAGEMENTS DES BÉNÉVOLES
+            {translate_text("Technicien bénévole - Ushindi Business Telecom", target_language)}
+            
+            ## EXPÉRIENCES DE RECHERCHE
+            {translate_text("Évaluation Des Scénarii De Turbinage Du Barrage de JIJI Mulembwe", target_language)}
+            
+            ## CONTACT
+            {translate_text("Courriel : alvinhakizimana@gmail.com / alvinjeanclaude@yahoo.co.uk", target_language)}
+        """)
 
-    if st.sidebar.button(translate_text("S'abonner", target_language)):
-        if is_valid_email(email):
-           st.sidebar.success(translate_text(f"Vous êtes maintenant abonné avec l'adresse e-mail : {email}",target_language))
-        else:
-           st.sidebar.warning(translate_text("Veuillez saisir une adresse e-mail valide.", target_language))
-
-    
-    st.sidebar.button(translate_text("Télécharger la Lettre de Motivation", target_language))
-
-
-    # Téléchargement du CV
-    st.write(translate_text("Télécharger mon CV au format PDF:", target_language))
-    if st.button(translate_text("Télécharger", target_language)):
-        pdfkit.from_file('votre_cv.html', 'votre_cv.pdf')
+        pdf_file = pdfkit.from_string(pdf_content, False)
+        st.download_button("Télécharger CV PDF", pdf_file, "cv.pdf")
 
 if __name__ == "__main__":
     main()
